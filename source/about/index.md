@@ -1,34 +1,24 @@
 ---
-title: 分类
+title: 关于我
 type: "about"
 comments: false
 ---
 
-#关于我
+## 联系方式
 
-## 我呢，哈哈
+Email: 1951828835@qq.com
+QQ: 1951828835
 
-夺国 产国
+## 基本信息
 
- >asdasdfasd
- >asdfasdfas
+男/90后/摩羯座
+所在城市：广州
 
-```html
-    <!DOCTYPE HTML>
-    <html>
-    <head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8;"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="robots" content="all" />
-    <meta name="robots" content="index,follow"/>
-    </head>
-    <body>
+## 个人简介
 
-    <script type="text/javascript" src="http://www.qq.com/404/search_children.js"
-        charset="utf-8" homePageUrl="your site url "
-        homePageName="回到我的主页">
-    </script>
+目前为HTML5前端工程师，擅长PC端以及移动端微信页面开发。
 
-    </body>
-    </html>
-```
+## 技能清单
+
+前端框架：zepto/requirejs/underscore/Bootstrap/AngularJS/JQuery
+版本管理、文档和自动化部署工具：Svn/Git/Grunt/Gulp/webpack
