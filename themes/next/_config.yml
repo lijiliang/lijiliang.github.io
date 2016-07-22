@@ -123,6 +123,8 @@ font:
 #social:
   #LinkLabel: Link
 
+social:
+  GitHub: https://github.com/lijiliang
 
 # Social Links Icons
 # Icon Mapping:
@@ -238,11 +240,11 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
-
+#baidu_analytics: 百度统计的ID
+baidu_analytics: 93ad203aad002d1cdcb9c350805e4c5b
 # Duoshuo ShortName
-#duoshuo_shortname:
-
+#duoshuo_shortname:  #多说网站
+duoshuo_shortname: lijiliang
 # Disqus
 #disqus_shortname:
 
@@ -277,7 +279,8 @@ mathjax:
 duoshuo_info:
   ua_enable: true
   admin_enable: false
-  user_id: 0
+  user_id: 1249776
+  admin_nickname: stone
   #admin_nickname: Author
 
 
@@ -300,10 +303,10 @@ facebook_comments_plugin:
 
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
-leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+leancloud_visitors:   # 阅读数
+  enable: true
+  app_id: WW8zgLOBEdwTVM7vX5nuI833-gzGzoHsz #<app_id>
+  app_key: La6DQfpcTqMN2GwnWIPnHXjq #<app_key>
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
