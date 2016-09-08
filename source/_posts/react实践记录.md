@@ -114,3 +114,58 @@ import React, {Component} from 'react'
 `createClass` 接受一个只会在组件被挂载时才会调用一次的`initialState`函数。
 
 ES6 的`class`则使用构造函数。在调用`super`之后，可以直接设置state。
+
+
+## JSX中的if-else
+
+你没法在JSX中使用 if-else 语句，因为 JSX 只是函数调用和对象创建的语法糖
+
+### 用三元操作表达式
+
+```js
+{{condition ? 'msg' : ''}}
+```
+
+### 单用if语法先判断
+
+```js
+var loginButton;
+if (loggedIn) {
+  loginButton = <LogoutButton />;
+} else {
+  loginButton = <LoginButton />;
+}
+
+return (
+  <nav>
+    <Home />
+    {loginButton}
+  </nav>
+)
+```
+
+### 内联判断，用立即调用函数表达式
+
+```js
+// ES5写法  函数的this调用需要重置this
+{
+    (function(){
+        if(this.state.color){
+            return(
+                <div>this.state.color</div>
+            )
+        }
+    })()
+}
+
+//ES6写法
+{
+    (()=>{
+        if(this.state.color){
+            return(
+                <div>this.state.color</div>
+            )
+        }
+    })()
+}
+```
