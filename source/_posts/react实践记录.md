@@ -123,10 +123,26 @@ ES6 的`class`则使用构造函数。在调用`super`之后，可以直接设�
 ### 用三元操作表达式
 
 ```js
-{{condition ? 'msg' : ''}}
+var HelloMessage = React.createClass({
+  render: function() {
+    return <div>Hello {this.props.name ？ this.props.name : "World"}</div>;
+  }
+});
+ReactDOM.render(<HelloMessage name="xiaowang" />, document.body);
 ```
 
-### 单用if语法先判断
+### 用比较运算符“ || ”
+
+```js
+var HelloMessage = React.createClass({
+  render: function() {
+      return <div>Hello {this.props.name || "World"}</div>;
+  }
+});
+ReactDOM.render(<HelloMessage name="xiaowang" />, document.body);
+```
+
+### 用变量来书写
 
 ```js
 var loginButton;
