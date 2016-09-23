@@ -7,10 +7,6 @@ tags: [javascript]
 permalink: scope-closure
 ---
 
-## 目标
-
-无具体目标
-
 ## 知识点
 
 1. 理解 js 中 var 的作用域
