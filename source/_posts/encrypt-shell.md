@@ -84,3 +84,13 @@ ssl_certificate_key /etc/nginx/certs/youmeixun.com.key;
 ```
 0 0 1 * * /etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf >> /var/log/lets-encrypt.log 2>&1
 ```
+
+定时任务也可以参考这里
+https://my.oschina.net/tearlight/blog/738993
+
+定时任务也可以这样写`getcert.sh`
+```
+#!bin/sh
+/etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf
+/usr/sbin/nginx -s reload
+```
