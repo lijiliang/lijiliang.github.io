@@ -88,9 +88,8 @@ ssl_certificate_key /etc/nginx/certs/youmeixun.com.key;
 定时任务也可以参考这里
 https://my.oschina.net/tearlight/blog/738993
 
-定时任务也可以这样写`getcert.sh`
+定时任务也可以这样写`getcert.sh`，记得要给执行权限
 ```
-#!bin/sh
 /etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf
 /usr/sbin/nginx -s reload
 ```
