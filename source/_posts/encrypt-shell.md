@@ -94,3 +94,17 @@ https://my.oschina.net/tearlight/blog/738993
 /etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf
 /usr/sbin/nginx -s reload
 ```
+编辑crontab
+```
+crontab -e
+```
+
+重启crond
+```
+service crond restart
+```
+
+查看是否运行
+```
+service crond status
+```
