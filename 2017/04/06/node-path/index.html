@@ -1,0 +1,673 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node,nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="node之path模块在node API中的path对象使用频率很高，掌握了有助于我们处理好一些文件或文件夹的路径。以此记录，共勉。12//引用该模块var path = require(&quot;path&quot;);
+1、路径解析，得到规范化的路径格式12345//对window系统，目录分隔为&apos;\&apos;, 对于UNIX系统，分隔符为&apos;/&apos;，针对&apos;..&apos;返回上一级；/与\\都被统一转换//path.normali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js的path模块">
+<meta property="og:url" content="https://lijiliang.github.io/2017/04/06/node-path/index.html">
+<meta property="og:site_name" content="stone的博客">
+<meta property="og:description" content="node之path模块在node API中的path对象使用频率很高，掌握了有助于我们处理好一些文件或文件夹的路径。以此记录，共勉。12//引用该模块var path = require(&quot;path&quot;);
+1、路径解析，得到规范化的路径格式12345//对window系统，目录分隔为&apos;\&apos;, 对于UNIX系统，分隔符为&apos;/&apos;，针对&apos;..&apos;返回上一级；/与\\都被统一转换//path.normali">
+<meta property="og:updated_time" content="2017-04-06T14:30:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node.js的path模块">
+<meta name="twitter:description" content="node之path模块在node API中的path对象使用频率很高，掌握了有助于我们处理好一些文件或文件夹的路径。以此记录，共勉。12//引用该模块var path = require(&quot;path&quot;);
+1、路径解析，得到规范化的路径格式12345//对window系统，目录分隔为&apos;\&apos;, 对于UNIX系统，分隔符为&apos;/&apos;，针对&apos;..&apos;返回上一级；/与\\都被统一转换//path.normali">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 1249776,
+      author: 'stone'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://lijiliang.github.io/2017/04/06/node-path/"/>
+
+  <title> node.js的path模块 | stone的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?93ad203aad002d1cdcb9c350805e4c5b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">stone的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node.js的path模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-06T22:30:06+08:00" content="2017-04-06">
+              2017-04-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/06/node-path/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/06/node-path/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="node之path模块"><a href="#node之path模块" class="headerlink" title="node之path模块"></a>node之path模块</h2><p>在node API中的<code>path</code>对象使用频率很高，掌握了有助于我们处理好一些文件或文件夹的路径。以此记录，共勉。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//引用该模块</span></div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="1、路径解析，得到规范化的路径格式"><a href="#1、路径解析，得到规范化的路径格式" class="headerlink" title="1、路径解析，得到规范化的路径格式"></a>1、路径解析，得到规范化的路径格式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//对window系统，目录分隔为'\', 对于UNIX系统，分隔符为'/'，针对'..'返回上一级；/与\\都被统一转换</span></div><div class="line"><span class="comment">//path.normalize(p);</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.normalize(__dirname + <span class="string">'/test/a//b//../c/utilyou.mp3'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath); <span class="comment">//windows: E:\workspace\NodeJS\app\fs\test\a\c\utilyou.mp3</span></div></pre></td></tr></table></figure>
+<h2 id="2、路径结合、合并，路径最后不会带目录分隔符"><a href="#2、路径结合、合并，路径最后不会带目录分隔符" class="headerlink" title="2、路径结合、合并，路径最后不会带目录分隔符"></a>2、路径结合、合并，路径最后不会带目录分隔符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//path.join([path1],[path2]..[pathn]);</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * [path1] 路径或表示目录的字符，</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">var</span> path1 = <span class="string">'path1'</span>,</div><div class="line">    path2 = <span class="string">'path2//pp\\'</span>,</div><div class="line">    path3 = <span class="string">'../path3'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.join(path1, path2, path3);</div><div class="line"><span class="built_in">console</span>.log(myPath); <span class="comment">//path1\path2\path3</span></div></pre></td></tr></table></figure>
+<h2 id="3、获取绝对路径"><a href="#3、获取绝对路径" class="headerlink" title="3、获取绝对路径"></a>3、获取绝对路径</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//path.resolve(path1, [path2]..[pathn]);</span></div><div class="line"></div><div class="line"><span class="comment">//以应用程序为起点，根据参数字符串解析出一个绝对路径</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * path 必须至少一个路径字符串值</div><div class="line"> * [pathn] 可选路径字符串</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.resolve(<span class="string">'path1'</span>, <span class="string">'path2'</span>, <span class="string">'a/b\\c/'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath);<span class="comment">//E:\workspace\NodeJS\path1\path2\a\b\c</span></div></pre></td></tr></table></figure>
+<h2 id="4、获取相对路径"><a href="#4、获取相对路径" class="headerlink" title="4、获取相对路径"></a>4、获取相对路径</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//path.relative(from, to);</span></div><div class="line"><span class="comment">//获取两路径之间的相对关系</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * from 当前路径，并且方法返回值是基于from指定到to的相对路径</div><div class="line"> * to   到哪路径，</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="keyword">from</span> = <span class="string">'c:\\from\\a\\'</span>,</div><div class="line">    to = <span class="string">'c:/test/b'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> _path = path.relative(<span class="keyword">from</span>, to);</div><div class="line"><span class="built_in">console</span>.log(_path); <span class="comment">//..\..\test\b; 表示从from到to的相对路径</span></div></pre></td></tr></table></figure>
+<h2 id="5、path-dirname-p"><a href="#5、path-dirname-p" class="headerlink" title="5、path.dirname(p)"></a>5、path.dirname(p)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取路径中目录名</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.dirname(__dirname + <span class="string">'/test/util you.mp3'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath);</div></pre></td></tr></table></figure>
+<h2 id="6、path-basename-path-ext"><a href="#6、path-basename-path-ext" class="headerlink" title="6、path.basename(path, [ext])"></a>6、path.basename(path, [ext])</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取路径中文件名,后缀是可选的，如果加，请使用'.ext'方式来匹配，则返回值中不包括后缀名；</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.basename(__dirname + <span class="string">'/test/util you.mp3'</span>, <span class="string">'.mp3'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath);</div></pre></td></tr></table></figure>
+<h2 id="6、path-basename-path-ext-1"><a href="#6、path-basename-path-ext-1" class="headerlink" title="6、path.basename(path, [ext])"></a>6、path.basename(path, [ext])</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取路径中文件名,后缀是可选的，如果加，请使用'.ext'方式来匹配，则返回值中不包括后缀名；</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myPath = path.basename(__dirname + <span class="string">'/test/util you.mp3'</span>, <span class="string">'.mp3'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath);</div></pre></td></tr></table></figure>
+<h2 id="7、path-extname-path"><a href="#7、path-extname-path" class="headerlink" title="7、path.extname(path)"></a>7、path.extname(path)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回路径文件中的扩展名</span></div><div class="line"><span class="keyword">var</span> myPath = path.extname(<span class="string">'/foo/bar/baz/file.txt'</span>);</div><div class="line"><span class="built_in">console</span>.log(myPath); <span class="comment">// .txt</span></div></pre></td></tr></table></figure>
+<h2 id="8、path-sep"><a href="#8、path-sep" class="headerlink" title="8、path.sep"></a>8、path.sep</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//返回对应平台下的文件夹分隔符，win下为'\'，*nix下为'/'：</span></div><div class="line"><span class="keyword">var</span> url1 = path.sep;</div><div class="line"><span class="keyword">var</span> url2 = <span class="string">'foo\\bar\\baz'</span>.split(path.sep);</div><div class="line"><span class="keyword">var</span> url3 = <span class="string">'foo/bar/baz'</span>.split(path.sep);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'url1:'</span>,url1);  <span class="comment">// win下为\，*nix下为/</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'url2:'</span>,url2);  <span class="comment">// [ 'foo', 'bar', 'baz' ]</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'url3:'</span>,url3);  <span class="comment">// win下返回[ 'foo/bar/baz' ]，但在*nix系统下会返回[ 'foo', 'bar', 'baz' ]</span></div></pre></td></tr></table></figure>
+<h2 id="9、path-delimiter"><a href="#9、path-delimiter" class="headerlink" title="9、path.delimiter"></a>9、path.delimiter</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//返回对应平台下的路径分隔符，win下为';'，*nix下为':'：</span></div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> env = process.env.PATH; <span class="comment">//当前系统的环境变量PATH</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> url1 = env.split(path.delimiter);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(path.delimiter); <span class="comment">//win下为“;”，*nix下为“:”</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'env:'</span>,env);  <span class="comment">// C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'url1:'</span>,url1);  <span class="comment">// ['C:\ProgramData\Oracle\Java\javapath','C:\Program Files (x86)\Intel\iCLS Client\']</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/react实践记录/" rel="next" title="React实践记录">
+                <i class="fa fa-chevron-left"></i> React实践记录
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/mobileIssue/" rel="prev" title="web移动端开发遇到的问题汇总">
+                web移动端开发遇到的问题汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/06/node-path/"
+           data-title="node.js的path模块" data-url="https://lijiliang.github.io/2017/04/06/node-path/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lijiliang" />
+          <p class="site-author-name" itemprop="name">lijiliang</p>
+          <p class="site-description motion-element" itemprop="description">实践，阅读，分享，学习，积累</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lijiliang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#node之path模块"><span class="nav-number">1.</span> <span class="nav-text">node之path模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、路径解析，得到规范化的路径格式"><span class="nav-number">2.</span> <span class="nav-text">1、路径解析，得到规范化的路径格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、路径结合、合并，路径最后不会带目录分隔符"><span class="nav-number">3.</span> <span class="nav-text">2、路径结合、合并，路径最后不会带目录分隔符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、获取绝对路径"><span class="nav-number">4.</span> <span class="nav-text">3、获取绝对路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、获取相对路径"><span class="nav-number">5.</span> <span class="nav-text">4、获取相对路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、path-dirname-p"><span class="nav-number">6.</span> <span class="nav-text">5、path.dirname(p)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、path-basename-path-ext"><span class="nav-number">7.</span> <span class="nav-text">6、path.basename(path, [ext])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、path-basename-path-ext-1"><span class="nav-number">8.</span> <span class="nav-text">6、path.basename(path, [ext])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、path-extname-path"><span class="nav-number">9.</span> <span class="nav-text">7、path.extname(path)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、path-sep"><span class="nav-number">10.</span> <span class="nav-text">8、path.sep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、path-delimiter"><span class="nav-number">11.</span> <span class="nav-text">9、path.delimiter</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lijiliang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lijiliang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

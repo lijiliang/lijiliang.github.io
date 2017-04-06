@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="给自己的网站免费加上https，调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。
+下载到本地123wget https://raw.githubusercontent.com/xdtianyu/scripts/master/lets-encrypt/letsencrypt.confwget https://raw.githubusercontent.com/xdtianyu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script">
+<meta property="og:url" content="https://lijiliang.github.io/2017/04/06/https-encrypt-shell/index.html">
+<meta property="og:site_name" content="stone的博客">
+<meta property="og:description" content="给自己的网站免费加上https，调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。
+下载到本地123wget https://raw.githubusercontent.com/xdtianyu/scripts/master/lets-encrypt/letsencrypt.confwget https://raw.githubusercontent.com/xdtianyu">
+<meta property="og:updated_time" content="2017-04-06T14:30:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script">
+<meta name="twitter:description" content="给自己的网站免费加上https，调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。
+下载到本地123wget https://raw.githubusercontent.com/xdtianyu/scripts/master/lets-encrypt/letsencrypt.confwget https://raw.githubusercontent.com/xdtianyu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 1249776,
+      author: 'stone'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://lijiliang.github.io/2017/04/06/https-encrypt-shell/"/>
+
+  <title> 给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script | stone的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?93ad203aad002d1cdcb9c350805e4c5b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">stone的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-06T22:30:06+08:00" content="2017-04-06">
+              2017-04-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/06/https-encrypt-shell/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/06/https-encrypt-shell/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>给自己的网站免费加上https，调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。</p>
+<h2 id="下载到本地"><a href="#下载到本地" class="headerlink" title="下载到本地"></a>下载到本地</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://raw.githubusercontent.com/xdtianyu/scripts/master/lets-encrypt/letsencrypt.conf</div><div class="line">wget https://raw.githubusercontent.com/xdtianyu/scripts/master/lets-encrypt/letsencrypt.sh</div><div class="line">chmod +x letsencrypt.sh</div></pre></td></tr></table></figure>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>修改letsencrypt.conf文件，只需要修改 DOMAIN_KEY DOMAIN_DIR DOMAINS 为你自己的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ACCOUNT_KEY=&quot;letsencrypt-account.key&quot;</div><div class="line">DOMAIN_KEY=&quot;example.com.key&quot;</div><div class="line">DOMAIN_DIR=&quot;/var/www/example.com&quot;</div><div class="line">DOMAINS=&quot;DNS:example.com,DNS:whatever.example.com&quot;</div><div class="line">#ECC=TRUE</div><div class="line">#LIGHTTPD=TRUE</div></pre></td></tr></table></figure></p>
+<p>执行过程中会自动生成需要的 key 文件。其中 <code>ACCOUNT_KEY</code> 为账户密钥， <code>DOMAIN_KEY</code> 为域名私钥， <code>DOMAIN_DIR</code> 为域名指向的目录，<code>DOMAINS</code> 为要签的域名列表， 需要 <code>ECC</code> 证书时取消 <code>#ECC=TRUE</code> 的注释，需要为 <code>lighttpd</code> 生成 <code>pem</code> 文件时，取消 <code>#LIGHTTPD=TRUE</code> 的注释。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./letsencrypt.sh letsencrypt.conf</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>需要已经绑定域名到 <code>/var/www/example.com</code> 目录，即通过 <code>http://example.com</code> <code>http://whatever.example.com</code> 可以访问到 <code>/var/www/example.com</code> 目录，用于域名的验证</p>
+<p><strong>将会生成如下几个文件</strong><br>lets-encrypt-x1-cross-signed.pem  #这个文件我的没有生成<br>example.chained.crt          # 即网上搜索教程里常见的 fullchain.pem<br>example.com.key              # 即网上搜索教程里常见的 privkey.pem<br>example.crt<br>example.csr</p>
+<h2 id="在-nginx-里添加-ssl-相关的配置"><a href="#在-nginx-里添加-ssl-相关的配置" class="headerlink" title="在 nginx 里添加 ssl 相关的配置"></a>在 nginx 里添加 ssl 相关的配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       443;</div><div class="line">    server_name  xxx.youmeixun.com;</div><div class="line">   #root   /usr/local/web/xxx-server;</div><div class="line">    ssl on;</div><div class="line">    ssl_certificate /etc/nginx/certs/youmeixun.crt;</div><div class="line">    ssl_certificate_key /etc/nginx/certs/youmeixun.com.key;</div><div class="line">    ssl_session_cache shared:SSL:1m;</div><div class="line">    ssl_session_timeout  10m;</div><div class="line">    ssl_ciphers HIGH:!aNULL:!MD5;</div><div class="line">    ssl_prefer_server_ciphers on;</div><div class="line"></div><div class="line">#     Load configuration files for the default server block.</div><div class="line">#    include /etc/nginx/default.d/*.conf;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        proxy_set_header    X-Real-IP           $remote_addr;</div><div class="line">        proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;</div><div class="line">        proxy_set_header    Host                $http_host;</div><div class="line">        proxy_set_header    X-NginX-Proxy       true;</div><div class="line">        proxy_set_header    Connection          &quot;&quot;;</div><div class="line">        proxy_http_version  1.1;</div><div class="line">        proxy_connect_timeout 1;</div><div class="line">        proxy_send_timeout 30;</div><div class="line">        proxy_read_timeout 60;</div><div class="line">        proxy_pass          http://localhost:3001;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实主要是这几行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssl on;</div><div class="line">ssl_certificate /etc/nginx/certs/youmeixun.crt;</div><div class="line">ssl_certificate_key /etc/nginx/certs/youmeixun.com.key;</div></pre></td></tr></table></figure></p>
+<h2 id="cron-定时任务"><a href="#cron-定时任务" class="headerlink" title="cron 定时任务"></a>cron 定时任务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 0 1 * * /etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf &gt;&gt; /var/log/lets-encrypt.log 2&gt;&amp;1</div></pre></td></tr></table></figure>
+<p>定时任务也可以参考这里<br><a href="https://my.oschina.net/tearlight/blog/738993" target="_blank" rel="external">https://my.oschina.net/tearlight/blog/738993</a></p>
+<p>定时任务也可以这样写<code>getcert.sh</code>，记得要给执行权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf</div><div class="line">/usr/sbin/nginx -s reload</div></pre></td></tr></table></figure></p>
+<p>编辑crontab<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab -e</div></pre></td></tr></table></figure></p>
+<p>重启crond<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service crond restart</div></pre></td></tr></table></figure></p>
+<p>查看是否运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service crond status</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/mobileIssue/" rel="next" title="web移动端开发遇到的问题汇总">
+                <i class="fa fa-chevron-left"></i> web移动端开发遇到的问题汇总
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/javascript实用代码片段/" rel="prev" title="javascript实用代码片段记录">
+                javascript实用代码片段记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/06/https-encrypt-shell/"
+           data-title="给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script" data-url="https://lijiliang.github.io/2017/04/06/https-encrypt-shell/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lijiliang" />
+          <p class="site-author-name" itemprop="name">lijiliang</p>
+          <p class="site-description motion-element" itemprop="description">实践，阅读，分享，学习，积累</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lijiliang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载到本地"><span class="nav-number">1.</span> <span class="nav-text">下载到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">2.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">3.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-nginx-里添加-ssl-相关的配置"><span class="nav-number">5.</span> <span class="nav-text">在 nginx 里添加 ssl 相关的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cron-定时任务"><span class="nav-number">6.</span> <span class="nav-text">cron 定时任务</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lijiliang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lijiliang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

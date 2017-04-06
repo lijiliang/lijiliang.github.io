@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web,移动端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
+preventPageScroll(&amp;apos;.container&amp;apos;);
+function preventPageScroll(id){
+    var el = document.querySelector">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web移动端开发遇到的问题汇总">
+<meta property="og:url" content="https://lijiliang.github.io/2017/04/06/mobileIssue/index.html">
+<meta property="og:site_name" content="stone的博客">
+<meta property="og:description" content="Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
+preventPageScroll(&amp;apos;.container&amp;apos;);
+function preventPageScroll(id){
+    var el = document.querySelector">
+<meta property="og:image" content="https://lijiliang.github.io/images/article/radius.png">
+<meta property="og:image" content="https://lijiliang.github.io/images/article/border-radius.png">
+<meta property="og:image" content="https://lijiliang.github.io/images/article/radius-animation.gif">
+<meta property="og:image" content="https://lijiliang.github.io/images/article/btn_mask.png">
+<meta property="og:image" content="https://lijiliang.github.io/images/article/keyboard_number.png">
+<meta property="og:updated_time" content="2017-04-06T14:30:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web移动端开发遇到的问题汇总">
+<meta name="twitter:description" content="Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器
+preventPageScroll(&amp;apos;.container&amp;apos;);
+function preventPageScroll(id){
+    var el = document.querySelector">
+<meta name="twitter:image" content="https://lijiliang.github.io/images/article/radius.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 1249776,
+      author: 'stone'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://lijiliang.github.io/2017/04/06/mobileIssue/"/>
+
+  <title> web移动端开发遇到的问题汇总 | stone的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?93ad203aad002d1cdcb9c350805e4c5b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">stone的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                web移动端开发遇到的问题汇总
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-06T22:30:06+08:00" content="2017-04-06">
+              2017-04-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/06/mobileIssue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/06/mobileIssue/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Q1-IOS中阻止当页面滚动到顶部或底部时页面整体滚动"><a href="#Q1-IOS中阻止当页面滚动到顶部或底部时页面整体滚动" class="headerlink" title="Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动"></a>Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动</h4><p>IOS中浏览页面当页面滚动到顶部或底部时继续滚动会将整个页面滑动，阻止这种效果可以使用下面的函数,参数为最外层容器的选择器</p>
+<pre><code>preventPageScroll(&apos;.container&apos;);
+function preventPageScroll(id){
+    var el = document.querySelector(id);
+    var sy = 0;
+    el.addEventListener(&apos;touchstart&apos;, function (e) {
+      sy = e.pageY;
+    });
+    el.addEventListener(&apos;touchmove&apos;, function (e) {
+      var down = (e.pageY - sy &gt; 0);
+      //top
+      if (down &amp;&amp; el.scrollTop &lt;= 0) {
+        e.preventDefault();
+      }
+      //bottom
+      if (!down &amp;&amp; el.scrollTop &gt;= el.scrollHeight - el.clientHeight) {
+        e.preventDefault();
+      }
+    });
+}
+</code></pre><h4 id="Q2-使用zepto常见的点透问题"><a href="#Q2-使用zepto常见的点透问题" class="headerlink" title="Q2: 使用zepto常见的点透问题"></a>Q2: 使用zepto常见的点透问题</h4><p>对于点透问题有以下方案可供解决参考</p>
+<ol>
+<li><p>引入fastclick.js，<a href="https://github.com/ftlabs/fastclick" target="_blank" rel="external">源码地址</a>，使用参考github</p>
+</li>
+<li><p>使用touchend代替tap，并阻止掉默认行为</p>
+</li>
+</ol>
+<pre><code>$(dom).on(&apos;touchend&apos;,function(ev){
+    // to doing
+    ev.preventDefault();
+});
+</code></pre><ol>
+<li><p>chrome Android 通过设置 viewport 的 user-scalable=no 可以阻止掉页面的300ms的延时</p>
+</li>
+<li><p>延迟一定时间(300ms+)处理</p>
+<pre><code>$(dom).on(&apos;tap&apos;,function(){
+   setTimeout(function(){
+       // to doing
+   },320)
+});
+</code></pre></li>
+</ol>
+<h4 id="Q3-获取窗口宽度"><a href="#Q3-获取窗口宽度" class="headerlink" title="Q3:获取窗口宽度"></a>Q3:获取窗口宽度</h4><p>获取窗口宽度有以下一些方法（这里假设已经将样式 reset）：</p>
+<ul>
+<li>window.innerWidth</li>
+<li>document.body.clientWidth</li>
+<li>document.body.offsetWidth</li>
+</ul>
+<p>zepto中有</p>
+<ul>
+<li>\$(window).width()</li>
+<li>\$(document).width()</li>
+</ul>
+<p>曾经遇到过在页面第一次打开时 window 和 document 获取的width 是相同的，但是当再次刷新页面时获取的两个宽度却不再相同，所以为了避免出现样式错乱，<strong>尽量使用 document 获取 width</strong></p>
+<h4 id="Q4-Android部分机型中给img设置border-radius失效"><a href="#Q4-Android部分机型中给img设置border-radius失效" class="headerlink" title="Q4: Android部分机型中给img设置border-radius失效"></a>Q4: Android部分机型中给img设置border-radius失效</h4><p><img src="https://lijiliang.github.io/images/article/radius.png" alt="radius"></p>
+<p>解决给img外嵌一个元素</p>
+<pre><code>//结构
+&lt;div&gt;
+    &lt;img src=&quot;&quot;&gt;
+&lt;/div&gt;
+//样式
+div{
+    display: inline-block;
+    border-radius: 50%;
+    border: 4px solid #FF7000;
+}
+img{
+    vertical-align: top;
+}
+</code></pre><h4 id="Q5-部分机型中圆角元素，背景颜色会溢出"><a href="#Q5-部分机型中圆角元素，背景颜色会溢出" class="headerlink" title="Q5: 部分机型中圆角元素，背景颜色会溢出"></a>Q5: 部分机型中圆角元素，背景颜色会溢出</h4><p><img src="https://lijiliang.github.io/images/article/border-radius.png" alt="border-radius"></p>
+<p>解决给该元素添加下面样式</p>
+<pre><code>//
+{background-clip:padding-box;}
+</code></pre><h4 id="Q6：圆角使用Animation-做loading动画时，圆角背景溢出"><a href="#Q6：圆角使用Animation-做loading动画时，圆角背景溢出" class="headerlink" title="Q6：圆角使用Animation 做loading动画时，圆角背景溢出"></a>Q6：圆角使用Animation 做loading动画时，圆角背景溢出</h4><p><img src="https://lijiliang.github.io/images/article/radius-animation.gif" alt="radius-animation"></p>
+<p>解决使用一个同等大小的圆角图片做蒙版遮罩</p>
+<pre><code>//
+{
+    background-color: #F9CEAC;
+    border-radius: 32px 0 0 32px;
+    -webkit-mask-image: url(./image/btn_mask.png);
+}
+</code></pre><p>蒙版图片<img src="https://lijiliang.github.io/images/article/btn_mask.png" alt="btn_mask"></p>
+<h4 id="Q7-CSS-三角在-Android-上显示为方块"><a href="#Q7-CSS-三角在-Android-上显示为方块" class="headerlink" title="Q7: CSS 三角在 Android 上显示为方块"></a>Q7: CSS 三角在 Android 上显示为方块</h4><p>解决：可能是对这个三角使用了圆角，去掉 <code>border-radius</code> 即可</p>
+<pre><code>//
+{
+    border: 10px solid transparent;
+    border-left-color: #000;
+    /*border-radius: 2px;*/
+}
+</code></pre><h4 id="Q8-Android-上使用-svg-作为-background-image-时显示模糊"><a href="#Q8-Android-上使用-svg-作为-background-image-时显示模糊" class="headerlink" title="Q8:Android 上使用 svg 作为 background-image 时显示模糊"></a>Q8:Android 上使用 svg 作为 background-image 时显示模糊</h4><p>解决：设置 <code>background-size</code></p>
+<pre><code>//
+{
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+</code></pre><h4 id="Q9-IOS中-active-样式不生效"><a href="#Q9-IOS中-active-样式不生效" class="headerlink" title="Q9: IOS中 :active 样式不生效"></a>Q9: IOS中 <code>:active</code> 样式不生效</h4><p>Safari 默认禁用了元素的 active 样式，我们通过声明 touchstart 来覆盖默认事件，就可以让 active 样式重新激活。</p>
+<p>解决：</p>
+<pre><code>document.addEventListener(&quot;touchstart&quot;, function() {},false);
+//或者 body标签添加 ontouchstart
+&lt;body ontouchstart=&quot;&quot;&gt;
+</code></pre><p>此外，默认点击按钮会有一个灰色的外框，通过这段 CSS 可以清除：</p>
+<pre><code>html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+</code></pre><h4 id="Q10-多行文字超出截断需要出现省略号方法"><a href="#Q10-多行文字超出截断需要出现省略号方法" class="headerlink" title="Q10: 多行文字超出截断需要出现省略号方法"></a>Q10: 多行文字超出截断需要出现省略号方法</h4><p>单行文本截断并末尾出现省略号一般写法是：</p>
+<pre><code>//
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</code></pre><p>多行文版截断并出现省略号的纯CSS方法，其中的 <code>-webkit-line-clamp: 2</code> 即用来控制文本超出两行时截断并出现省略号。 在使用中如果出现第三行文字露一点头出来的问题，设置合理的 <code>line-height</code> 即可解决</p>
+<pre><code>//
+{
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+</code></pre><h4 id="Q11-1px-线条、边框"><a href="#Q11-1px-线条、边框" class="headerlink" title="Q11: 1px 线条、边框"></a>Q11: 1px 线条、边框</h4><p>在高版本设备中可以直接设置 0.5px 边框，但底版不能友好支持，一个比较合适的方法：原理是把原先元素的 border 去掉，然后利用 <code>:before</code> 或者 <code>:after</code> 重做 <code>border</code> ，并 <code>transform</code> 的 <code>scale</code> 缩小一半，原先的元素相对定位，新做的 <code>border</code> 绝对定位。</p>
+<ul>
+<li><p>单条 border</p>
+<pre><code>.hairlines li{
+    position: relative;
+    border:none;
+}
+.hairlines li:after{
+    content: &apos;&apos;;
+    position: absolute;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+}
+</code></pre></li>
+<li><p>四条 border</p>
+<pre><code>.hairlines li{
+    position: relative;
+    margin-bottom: 20px;
+    border:none;
+}
+.hairlines li:after{
+    content: &apos;&apos;;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+</code></pre></li>
+</ul>
+<p>样式使用的时候，也要结合 JS 代码，判断是否 Retina 屏</p>
+<pre><code>if(window.devicePixelRatio &amp;&amp; devicePixelRatio &gt;= 2){
+    document.querySelector(&apos;ul&apos;).className = &apos;hairlines&apos;;
+}
+</code></pre><p>更多请参考<a href="http://jinlong.github.io/2015/05/24/css-retina-hairlines/" target="_blank" rel="external">这篇文章</a></p>
+<h4 id="Q12-当模块使用系统的横向滚动时，不想显示出系统的滚动条样式"><a href="#Q12-当模块使用系统的横向滚动时，不想显示出系统的滚动条样式" class="headerlink" title="Q12: 当模块使用系统的横向滚动时，不想显示出系统的滚动条样式"></a>Q12: 当模块使用系统的横向滚动时，不想显示出系统的滚动条样式</h4><p>解决:</p>
+<ul>
+<li><p>Android</p>
+<pre><code>::-webkit-scrollbar{ opacity: 0; }
+</code></pre></li>
+<li><p>Ios</p>
+<pre><code>//html
+&lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+//css
+.wrap{ height: 100px; overflow: hidden; }
+.box{ width: 100%; height: -webkit-calc(100% + 5px); overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+</code></pre></li>
+</ul>
+<p>原理：<code>.box</code> 元素的横向滚动条通过其外层元素 <code>.wrap</code> 的 <code>overflow:hiden</code> 来隐藏。 （5px 是 iOS 上滚动条元素的高度）</p>
+<h4 id="Q13-横向滚动的元素，滑动时有时图片显示不出来-文字显示不出来"><a href="#Q13-横向滚动的元素，滑动时有时图片显示不出来-文字显示不出来" class="headerlink" title="Q13:横向滚动的元素，滑动时有时图片显示不出来/文字显示不出来"></a>Q13:横向滚动的元素，滑动时有时图片显示不出来/文字显示不出来</h4><p>解决：给每个横滑的元素块使用硬件加速</p>
+<pre><code>li{ -webkit-transform: translateZ(0); }
+</code></pre><h4 id="Q14-使用-animation-动画后，页面上-overflow-auto-的元素滚动条不能滑动"><a href="#Q14-使用-animation-动画后，页面上-overflow-auto-的元素滚动条不能滑动" class="headerlink" title="Q14:使用 animation 动画后，页面上 overflow:auto 的元素滚动条不能滑动"></a>Q14:使用 animation 动画后，页面上 overflow:auto 的元素滚动条不能滑动</h4><p>解决：不使用 translate 方式的动画，换为使用 left/top 来实现元素移动的动画</p>
+<h4 id="Q15-上下滑动页面时候，页面元素消失"><a href="#Q15-上下滑动页面时候，页面元素消失" class="headerlink" title="Q15:上下滑动页面时候，页面元素消失"></a>Q15:上下滑动页面时候，页面元素消失</h4><p>解决：检查是否使用了 fadeIn 的 animation，如有则 fill-mode 使用 backwards 模式</p>
+<pre><code>//
+{ -webkit-animation: fadeIn 0.5s ease backwards; }
+</code></pre><h4 id="Q16-页面上数字自动变成了可以点击的链接"><a href="#Q16-页面上数字自动变成了可以点击的链接" class="headerlink" title="Q16: 页面上数字自动变成了可以点击的链接"></a>Q16: 页面上数字自动变成了可以点击的链接</h4><p>解决：在页面 <code>&lt;head&gt;</code> 里添加</p>
+<pre><code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
+</code></pre><h4 id="Q17-input-在-iOS-中圆角、内阴影去不掉"><a href="#Q17-input-在-iOS-中圆角、内阴影去不掉" class="headerlink" title="Q17:input 在 iOS 中圆角、内阴影去不掉"></a>Q17:input 在 iOS 中圆角、内阴影去不掉</h4><p>解决：</p>
+<pre><code>input{ -webkit-appearance: none; border-radius: 0; }
+</code></pre><h4 id="Q18-焦点在-input-时，placeholder-没有隐藏"><a href="#Q18-焦点在-input-时，placeholder-没有隐藏" class="headerlink" title="Q18:焦点在 input 时，placeholder 没有隐藏"></a>Q18:焦点在 input 时，placeholder 没有隐藏</h4><p>解决：</p>
+<pre><code>input:focus::-webkit-input-placeholder{ opacity: 0;}
+</code></pre><h4 id="Q19-input-输入框调出数字输入键盘"><a href="#Q19-input-输入框调出数字输入键盘" class="headerlink" title="Q19:input 输入框调出数字输入键盘"></a>Q19:input 输入框调出数字输入键盘</h4><p>解决：</p>
+<pre><code>&lt;input type=&quot;number&quot; /&gt;
+&lt;input type=&quot;number&quot; pattern=&quot;[0-9]*&quot; /&gt;
+&lt;input type=&quot;tel&quot; /&gt;
+</code></pre><p>分别对应下图的1、2、3<br><img src="https://lijiliang.github.io/images/article/keyboard_number.png" alt="keyboard_number"></p>
+<p>需要注意的是，单独使用 type=”number” 时候， iOS 上出现并不是九宫格的数字键盘，如果需要九宫格的数字键盘，可选择使用 2、3 的方法。 1、2、3 在 Android 上均可以唤起九宫格的数字键盘</p>
+<h4 id="Q20-rem单位动态设置fontSize"><a href="#Q20-rem单位动态设置fontSize" class="headerlink" title="Q20: rem单位动态设置fontSize"></a>Q20: rem单位动态设置fontSize</h4><pre><code>(function (doc, win) {
+    var _root = doc.documentElement,
+        resizeEvent = &apos;orientationchange&apos; in window ? &apos;orientationchange&apos; : &apos;resize&apos;,
+        resizeCallback = function () {
+            var clientWidth = _root.clientWidth,
+                fontSize = 50;
+            if (!clientWidth) return;
+            if(clientWidth &lt; 750) {
+                fontSize = 50 * (clientWidth / 375);
+            } else {
+                fontSize = 50 * (750 / 375);
+            }
+            _root.style.fontSize = fontSize + &apos;px&apos;;
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvent, resizeCallback, false);
+    doc.addEventListener(&apos;DOMContentLoaded&apos;, resizeCallback, false);
+})(document, window);
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag">#web</a>
+          
+            <a href="/tags/移动端/" rel="tag">#移动端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/node-path/" rel="next" title="node.js的path模块">
+                <i class="fa fa-chevron-left"></i> node.js的path模块
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/https-encrypt-shell/" rel="prev" title="给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script">
+                给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/06/mobileIssue/"
+           data-title="web移动端开发遇到的问题汇总" data-url="https://lijiliang.github.io/2017/04/06/mobileIssue/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lijiliang" />
+          <p class="site-author-name" itemprop="name">lijiliang</p>
+          <p class="site-description motion-element" itemprop="description">实践，阅读，分享，学习，积累</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lijiliang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q1-IOS中阻止当页面滚动到顶部或底部时页面整体滚动"><span class="nav-number">1.</span> <span class="nav-text">Q1: IOS中阻止当页面滚动到顶部或底部时页面整体滚动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q2-使用zepto常见的点透问题"><span class="nav-number">2.</span> <span class="nav-text">Q2: 使用zepto常见的点透问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q3-获取窗口宽度"><span class="nav-number">3.</span> <span class="nav-text">Q3:获取窗口宽度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q4-Android部分机型中给img设置border-radius失效"><span class="nav-number">4.</span> <span class="nav-text">Q4: Android部分机型中给img设置border-radius失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q5-部分机型中圆角元素，背景颜色会溢出"><span class="nav-number">5.</span> <span class="nav-text">Q5: 部分机型中圆角元素，背景颜色会溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q6：圆角使用Animation-做loading动画时，圆角背景溢出"><span class="nav-number">6.</span> <span class="nav-text">Q6：圆角使用Animation 做loading动画时，圆角背景溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q7-CSS-三角在-Android-上显示为方块"><span class="nav-number">7.</span> <span class="nav-text">Q7: CSS 三角在 Android 上显示为方块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q8-Android-上使用-svg-作为-background-image-时显示模糊"><span class="nav-number">8.</span> <span class="nav-text">Q8:Android 上使用 svg 作为 background-image 时显示模糊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q9-IOS中-active-样式不生效"><span class="nav-number">9.</span> <span class="nav-text">Q9: IOS中 :active 样式不生效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q10-多行文字超出截断需要出现省略号方法"><span class="nav-number">10.</span> <span class="nav-text">Q10: 多行文字超出截断需要出现省略号方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q11-1px-线条、边框"><span class="nav-number">11.</span> <span class="nav-text">Q11: 1px 线条、边框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q12-当模块使用系统的横向滚动时，不想显示出系统的滚动条样式"><span class="nav-number">12.</span> <span class="nav-text">Q12: 当模块使用系统的横向滚动时，不想显示出系统的滚动条样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q13-横向滚动的元素，滑动时有时图片显示不出来-文字显示不出来"><span class="nav-number">13.</span> <span class="nav-text">Q13:横向滚动的元素，滑动时有时图片显示不出来/文字显示不出来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q14-使用-animation-动画后，页面上-overflow-auto-的元素滚动条不能滑动"><span class="nav-number">14.</span> <span class="nav-text">Q14:使用 animation 动画后，页面上 overflow:auto 的元素滚动条不能滑动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q15-上下滑动页面时候，页面元素消失"><span class="nav-number">15.</span> <span class="nav-text">Q15:上下滑动页面时候，页面元素消失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q16-页面上数字自动变成了可以点击的链接"><span class="nav-number">16.</span> <span class="nav-text">Q16: 页面上数字自动变成了可以点击的链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q17-input-在-iOS-中圆角、内阴影去不掉"><span class="nav-number">17.</span> <span class="nav-text">Q17:input 在 iOS 中圆角、内阴影去不掉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q18-焦点在-input-时，placeholder-没有隐藏"><span class="nav-number">18.</span> <span class="nav-text">Q18:焦点在 input 时，placeholder 没有隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q19-input-输入框调出数字输入键盘"><span class="nav-number">19.</span> <span class="nav-text">Q19:input 输入框调出数字输入键盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q20-rem单位动态设置fontSize"><span class="nav-number">20.</span> <span class="nav-text">Q20: rem单位动态设置fontSize</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lijiliang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lijiliang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

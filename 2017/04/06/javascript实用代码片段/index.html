@@ -1,0 +1,676 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言收集工作中实用的javascript相关代码片段，方便日后使用。
+元素是否位于当前视窗1234567function isInViewport(el) &amp;#123;    var rect = el.getBoundingClientRect();    return rect.bottom &amp;gt; 0 &amp;amp;&amp;amp;        rect.right &amp;gt; 0 &amp;amp;&amp;am">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript实用代码片段记录">
+<meta property="og:url" content="https://lijiliang.github.io/2017/04/06/javascript实用代码片段/index.html">
+<meta property="og:site_name" content="stone的博客">
+<meta property="og:description" content="前言收集工作中实用的javascript相关代码片段，方便日后使用。
+元素是否位于当前视窗1234567function isInViewport(el) &amp;#123;    var rect = el.getBoundingClientRect();    return rect.bottom &amp;gt; 0 &amp;amp;&amp;amp;        rect.right &amp;gt; 0 &amp;amp;&amp;am">
+<meta property="og:updated_time" content="2017-04-06T14:43:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript实用代码片段记录">
+<meta name="twitter:description" content="前言收集工作中实用的javascript相关代码片段，方便日后使用。
+元素是否位于当前视窗1234567function isInViewport(el) &amp;#123;    var rect = el.getBoundingClientRect();    return rect.bottom &amp;gt; 0 &amp;amp;&amp;amp;        rect.right &amp;gt; 0 &amp;amp;&amp;am">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 1249776,
+      author: 'stone'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://lijiliang.github.io/2017/04/06/javascript实用代码片段/"/>
+
+  <title> javascript实用代码片段记录 | stone的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?93ad203aad002d1cdcb9c350805e4c5b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">stone的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript实用代码片段记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-06T22:31:11+08:00" content="2017-04-06">
+              2017-04-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/06/javascript实用代码片段/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/06/javascript实用代码片段/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>收集工作中实用的javascript相关代码片段，方便日后使用。</p>
+<h2 id="元素是否位于当前视窗"><a href="#元素是否位于当前视窗" class="headerlink" title="元素是否位于当前视窗"></a>元素是否位于当前视窗</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isInViewport</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> rect = el.getBoundingClientRect();</div><div class="line">    <span class="keyword">return</span> rect.bottom &gt; <span class="number">0</span> &amp;&amp;</div><div class="line">        rect.right &gt; <span class="number">0</span> &amp;&amp;</div><div class="line">        rect.left &lt; (<span class="built_in">window</span>.innerWidth || <span class="built_in">document</span>. documentElement.clientWidth) &amp;&amp;</div><div class="line">        rect.top &lt; (<span class="built_in">window</span>.innerHeight || <span class="built_in">document</span>. documentElement.clientHeight);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="转义html"><a href="#转义html" class="headerlink" title="转义html"></a>转义html</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlEntities</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">String</span>(str)</div><div class="line">      .replace(<span class="regexp">/&amp;/g</span>, <span class="string">'&amp;amp;'</span>)</div><div class="line">      .replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>)</div><div class="line">      .replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>)</div><div class="line">      .replace(<span class="regexp">/"/g</span>, <span class="string">'&amp;quot;'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="按字节截取字符串"><a href="#按字节截取字符串" class="headerlink" title="按字节截取字符串"></a>按字节截取字符串</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">subSt</span>(<span class="params">str, len</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> newLength = <span class="number">0</span>;</div><div class="line">  <span class="keyword">var</span> newStr = <span class="string">""</span>;</div><div class="line">  <span class="keyword">var</span> chineseRegex = <span class="regexp">/[^\x00-\xff]/g</span>;</div><div class="line">  <span class="keyword">var</span> singleChar = <span class="string">""</span>;</div><div class="line">  <span class="keyword">var</span> strLength = str.replace(chineseRegex,<span class="string">"**"</span>).length;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; strLength;i++) &#123;</div><div class="line">      singleChar = str.charAt(i).toString();</div><div class="line">      <span class="keyword">if</span>(singleChar.match(chineseRegex) != <span class="literal">null</span>) &#123;</div><div class="line">          newLength += <span class="number">2</span>;</div><div class="line">      &#125; <span class="keyword">else</span>  &#123;</div><div class="line">          newLength++;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span>(newLength &gt; len) &#123;</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">      newStr += singleChar;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> newStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="删除数组中指定值的项"><a href="#删除数组中指定值的项" class="headerlink" title="删除数组中指定值的项"></a>删除数组中指定值的项</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*获取index*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOfArray</span> (<span class="params">val,arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>,len = arr.length;i&lt;len;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(arr[i] == val) <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*删除节点*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeFromArray</span>(<span class="params">val,arr</span>)</span>&#123;   </div><div class="line">    <span class="keyword">var</span> _index = indexOfArray(val,arr);</div><div class="line">    <span class="keyword">if</span>(_index &gt;<span class="number">-1</span>)&#123;</div><div class="line">        arr.splice(_index,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="for循环简写"><a href="#for循环简写" class="headerlink" title="for循环简写"></a>for循环简写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,c;c=array[i++];)&#123;</div><div class="line">    <span class="built_in">document</span>.write(c);<span class="comment">//1,2,3,4,5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="生成随机字母数字字符串"><a href="#生成随机字母数字字符串" class="headerlink" title="生成随机字母数字字符串"></a>生成随机字母数字字符串</h2><p>36进制是指26个字符加10个数字<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateRandomAlphaNum</span>(<span class="params">len</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> rdmString = <span class="string">""</span>;</div><div class="line">    <span class="keyword">for</span>( ; rdmString.length &lt; len; rdmString  += <span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substr(<span class="number">2</span>));</div><div class="line">    <span class="keyword">return</span>  rdmString.substr(<span class="number">0</span>, len);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="获取图片宽高"><a href="#获取图片宽高" class="headerlink" title="获取图片宽高"></a>获取图片宽高</h2><p>两种方法都可以<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"j-img"</span> <span class="attr">src</span>=<span class="string">"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.getElementById(<span class="string">'j-img'</span>);</div><div class="line"><span class="comment">//ie9以上</span></div><div class="line"><span class="keyword">var</span> _height = img.naturalHeight;</div><div class="line"><span class="keyword">var</span> _width = img.naturalWidth;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'高度:'</span>+_height+<span class="string">',宽度'</span>+_width);<span class="comment">//高度:38,宽度117</span></div><div class="line"><span class="comment">//兼容ie9以下</span></div><div class="line"><span class="keyword">var</span> imgObj = <span class="keyword">new</span> Image();</div><div class="line">imgObj.src = <span class="string">'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png'</span>;</div><div class="line">img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'高度:'</span>+<span class="keyword">this</span>.height+<span class="string">',宽度'</span>+<span class="keyword">this</span>.width);<span class="comment">//高度:38,宽度117</span></div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>定义在构造函数内部的方法和定义在原型上的方法是有区别的。<br>定义在构造函数内部的方法,会在它的每一个实例上都克隆这个方法;定义在构造函数的prototype属性上的方法会让它的所有示例都共享这个方法,但是不会在每个实例的内部重新定义这个方法. 如果我们的应用需要创建很多新的对象,并且这些对象还有许多的方法,为了节省内存,我们建议把这些方法都定义在构造函数的prototype属性上。</p>
+<p>私有变量也是如此:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, family</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.family = family;</div><div class="line">    <span class="comment">/*私有变量*/</span></div><div class="line">    <span class="keyword">var</span> records = [&#123;type: <span class="string">"in"</span>, amount: <span class="number">0</span>&#125;];</div><div class="line">    <span class="comment">/*私有方法，外部访问不到*/</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">privateFun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">//todo...</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">/*特权方法*/</span></div><div class="line">    <span class="keyword">this</span>.addTransaction = <span class="function"><span class="keyword">function</span>(<span class="params">trans</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(trans.hasOwnProperty(<span class="string">"type"</span>) &amp;&amp; trans.hasOwnProperty(<span class="string">"amount"</span>)) &#123;</div><div class="line">           records.push(trans);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">this</span>.balance = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> total = <span class="number">0</span>;</div><div class="line">       records.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">record</span>) </span>&#123;</div><div class="line">           <span class="keyword">if</span>(record.type === <span class="string">"in"</span>) &#123;</div><div class="line">             total += record.amount;</div><div class="line">           &#125;</div><div class="line">           <span class="keyword">else</span> &#123;</div><div class="line">             total -= record.amount;</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">        <span class="keyword">return</span> total;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="comment">/*公共方法*/</span></div><div class="line">Person.prototype.getFull = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">" "</span> + <span class="keyword">this</span>.family;</div><div class="line">&#125;;</div><div class="line">Person.prototype.getProfile = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">this</span>.getFull() + <span class="string">", total balance: "</span> + <span class="keyword">this</span>.balance();</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="面向模块"><a href="#面向模块" class="headerlink" title="面向模块"></a>面向模块</h2><p>通过命名规范区分私有和公有。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _$$myModule = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">/*私有变量*/</span></div><div class="line">    <span class="keyword">var</span> __privateCounter = <span class="number">0</span>;</div><div class="line">    <span class="comment">/*私有方法*/</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__privateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        _privateCounter++;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*公有方法*/</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_$addCounter</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        __privateFunction();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_$getCounter</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> __privateCounter;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*暴露出去*/</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        addCounter:_$addCounter,</div><div class="line">        getCounter:_$getCounter</div><div class="line">    &#125;;</div><div class="line">&#125;();</div><div class="line"><span class="comment">/*直接使用*/</span></div><div class="line">_&amp;&amp;myModule.getCounter();</div></pre></td></tr></table></figure></p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> result;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> result || (result = fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 使用</span></div><div class="line"><span class="keyword">var</span> createDiv = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">  div.innerHTML= <span class="string">"i am div"</span>;</div><div class="line">  div.style.display = <span class="string">'none'</span>;</div><div class="line">  <span class="built_in">document</span>.body.appendChild(div);</div><div class="line">  <span class="keyword">return</span> div;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> createSingleDiv = getSingle(createDiv);</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> div = createSingleDiv();</div><div class="line">  div.style.display = <span class="string">'block'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取url中参数构建对象"><a href="#获取url中参数构建对象" class="headerlink" title="获取url中参数构建对象"></a>获取url中参数构建对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getUrlSearchObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _search = <span class="built_in">window</span>.location.search;</div><div class="line">    <span class="keyword">if</span>(_search.length &gt; <span class="number">1</span>)&#123;</div><div class="line">        <span class="comment">//用来保存的对象</span></div><div class="line">        <span class="keyword">var</span> _objs = &#123;&#125;;</div><div class="line">        _search = _search.substring(<span class="number">1</span>);</div><div class="line">        <span class="keyword">var</span> items = [];</div><div class="line">        items = _search.split(<span class="string">'&amp;'</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=items.length;i&lt;len;i++)&#123;</div><div class="line">            <span class="keyword">var</span> _item = items[i].split(<span class="string">'='</span>);</div><div class="line">            <span class="keyword">var</span> _name = <span class="built_in">decodeURIComponent</span>(_item[<span class="number">0</span>]);</div><div class="line">            <span class="keyword">var</span> _value = <span class="built_in">decodeURIComponent</span>(_item[<span class="number">1</span>]);</div><div class="line">            _objs[_name] = _value;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> _objs;</div><div class="line">    &#125;   </div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> objs = getUrlSearchObj();</div><div class="line"><span class="comment">//http://localhost:4000/demo/getUrlSearchObj.html?a=123&amp;b=456#hashisme</span></div><div class="line"><span class="built_in">document</span>.write(<span class="built_in">JSON</span>.stringify(objs));<span class="comment">//&#123;"a":"123","b":"456"&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h2><p>删除两侧的空格<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p._$trim =<span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">     <span class="keyword">return</span> (str || <span class="string">''</span>).replace(<span class="regexp">/(^\s*)|(\s*$)/g</span>, <span class="string">""</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="等待一段时间"><a href="#等待一段时间" class="headerlink" title="等待一段时间"></a>等待一段时间</h2><p>模拟java中的sleep.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">numberMillis</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    <span class="keyword">var</span> exitTime = now.getTime() + numberMillis;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="keyword">if</span> (now.getTime() &gt; exitTime)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//使用,等待3s:</span></div><div class="line">sleep(<span class="number">3000</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="小数运算"><a href="#小数运算" class="headerlink" title="小数运算"></a>小数运算</h2><p>JavaScript 中的浮点数采用IEEE-754 格式的规定,这是一种二进制表示法,计算不精确.</p>
+<p>所以需要先升幂再降幂:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1, num2</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> r1, r2, m;</div><div class="line">    r1 = (<span class="string">''</span>+num1).split(<span class="string">'.'</span>)[<span class="number">1</span>].length;</div><div class="line">    r2 = (<span class="string">''</span>+num2).split(<span class="string">'.'</span>)[<span class="number">1</span>].length;</div><div class="line"></div><div class="line">    m = <span class="built_in">Math</span>.pow(<span class="number">10</span>,<span class="built_in">Math</span>.max(r1,r2));</div><div class="line">    <span class="keyword">return</span> (num1 * m + num2 * m) / m;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">0.1</span>,<span class="number">0.2</span>));   <span class="comment">//0.3</span></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">0.15</span>,<span class="number">0.2256</span>)); <span class="comment">//0.3756</span></div></pre></td></tr></table></figure></p>
+<h2 id="动态加载css"><a href="#动态加载css" class="headerlink" title="动态加载css"></a>动态加载css</h2><p>非首屏的css文件采用动态加载的方式，代码取自seaJs：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* @function 动态加载css文件</div><div class="line">* @param &#123;string&#125; options.url -- css资源路径</div><div class="line">* @param &#123;function&#125; options.callback -- 加载后回调函数</div><div class="line">* @param &#123;string&#125; options.id -- link标签id</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadCss</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> url = options.url,</div><div class="line">        callback = <span class="keyword">typeof</span> options.callback == <span class="string">"function"</span> ? options.callback : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">        id = options.id,</div><div class="line">        node = <span class="built_in">document</span>.createElement(<span class="string">"link"</span>),</div><div class="line">        supportOnload = <span class="string">"onload"</span> <span class="keyword">in</span> node,</div><div class="line">        isOldWebKit = +navigator.userAgent.replace(<span class="regexp">/.*(?:AppleWebKit|AndroidWebKit)\/?(\d+).*/i</span>, <span class="string">"$1"</span>) &lt; <span class="number">536</span>, <span class="comment">// webkit旧内核做特殊处理</span></div><div class="line">        protectNum = <span class="number">300000</span>; <span class="comment">// 阈值10分钟，一秒钟执行pollCss 500次</span></div><div class="line">    node.rel = <span class="string">"stylesheet"</span>;</div><div class="line">    node.type = <span class="string">"text/css"</span>;</div><div class="line">    node.href = url;</div><div class="line">    <span class="keyword">if</span>( <span class="keyword">typeof</span> id !== <span class="string">"undefined"</span> )&#123;</div><div class="line">        node.id = id;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(node);</div><div class="line">    <span class="comment">// for Old WebKit and Old Firefox</span></div><div class="line">    <span class="keyword">if</span> (isOldWebKit || !supportOnload) &#123;</div><div class="line">        <span class="comment">// Begin after node insertion</span></div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            pollCss(node, callback, <span class="number">0</span>);</div><div class="line">        &#125;, <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(supportOnload)&#123;</div><div class="line">        node.onload = onload;</div><div class="line">        node.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// 加载失败(404)</span></div><div class="line">            onload();</div><div class="line">        &#125;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        node.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (<span class="regexp">/loaded|complete/</span>.test(node.readyState)) &#123;</div><div class="line">                onload();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onload</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 确保只跑一次下载操作</span></div><div class="line">        node.onload = node.onerror = node.onreadystatechange = <span class="literal">null</span>;</div><div class="line">        <span class="comment">// 清空node引用，在低版本IE，不清除会造成内存泄露</span></div><div class="line">        node = <span class="literal">null</span>;</div><div class="line">        callback();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 循环判断css是否已加载成功</span></div><div class="line">    <span class="comment">/*</span></div><div class="line">    * @param node -- link节点</div><div class="line">    * @param callback -- 回调函数</div><div class="line">    * @param step -- 计步器，避免无限循环</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">pollCss</span>(<span class="params">node, callback, step</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> sheet = node.sheet,</div><div class="line">            isLoaded;</div><div class="line">        step += <span class="number">1</span>;</div><div class="line">        <span class="comment">// 保护，大于10分钟，则不再轮询</span></div><div class="line">        <span class="keyword">if</span>(step &gt; protectNum)&#123;</div><div class="line">            isLoaded = <span class="literal">true</span>;</div><div class="line">            <span class="comment">// 清空node引用</span></div><div class="line">            node = <span class="literal">null</span>;</div><div class="line">            callback();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(isOldWebKit)&#123;</div><div class="line">            <span class="comment">// for WebKit &lt; 536</span></div><div class="line">            <span class="keyword">if</span>(sheet)&#123;</div><div class="line">                isLoaded = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sheet)&#123;</div><div class="line">            <span class="comment">// for Firefox &lt; 9.0</span></div><div class="line">            <span class="keyword">try</span>&#123;</div><div class="line">                <span class="keyword">if</span>(sheet.cssRules)&#123;</div><div class="line">                    isLoaded = <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">catch</span>(ex)&#123;</div><div class="line">                <span class="comment">// 火狐特殊版本，通过特定值获知是否下载成功</span></div><div class="line">                <span class="comment">// The value of `ex.name` is changed from "NS_ERROR_DOM_SECURITY_ERR"</span></div><div class="line">                <span class="comment">// to "SecurityError" since Firefox 13.0. But Firefox is less than 9.0</span></div><div class="line">                <span class="comment">// in here, So it is ok to just rely on "NS_ERROR_DOM_SECURITY_ERR"</span></div><div class="line">                <span class="keyword">if</span>(ex.name === <span class="string">"NS_ERROR_DOM_SECURITY_ERR"</span>)&#123;</div><div class="line">                    isLoaded = <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span>(isLoaded)&#123;</div><div class="line">                <span class="comment">// 延迟20ms是为了给下载的样式留够渲染的时间</span></div><div class="line">                callback();</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                pollCss(node, callback, step);</div><div class="line">            &#125;</div><div class="line">        &#125;, <span class="number">20</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="动态加载js"><a href="#动态加载js" class="headerlink" title="动态加载js"></a>动态加载js</h2><p>非首屏的js采用动态加载的方式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* @function 动态加载js文件</div><div class="line">* @param &#123;string&#125; options.loadUrl -- js资源路径</div><div class="line">* @param &#123;function&#125; options.callMyFun -- 加载后回调函数</div><div class="line">* @param &#123;string&#125; options.argObj -- 传递参数</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadJs</span>(<span class="params">loadUrl,callMyFun,argObj</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> loadScript=<span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    loadScript.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</div><div class="line">    loadScript.setAttribute(<span class="string">'src'</span>,loadUrl);</div><div class="line">    <span class="built_in">console</span>.log(loadUrl)</div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(loadScript);</div><div class="line">    <span class="comment">//判断服务器</span></div><div class="line">    <span class="keyword">if</span>(navigator.userAgent.indexOf(<span class="string">"IE"</span>) &gt;=<span class="number">0</span>)&#123;</div><div class="line">        <span class="comment">//IE下的事件</span></div><div class="line">        loadScript.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(loadScript &amp;&amp; (loadScript.readyState == <span class="string">"loaded"</span> || loadScript.readyState == <span class="string">"complete"</span>))&#123;</div><div class="line">                <span class="comment">//表示加载成功</span></div><div class="line">                loadScript.onreadystatechange=<span class="literal">null</span>;</div><div class="line">                callMyFun()<span class="comment">//执行回调</span></div><div class="line">            &#125;</div><div class="line">        &#125;      </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        loadScript.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            loadScript.onload=<span class="literal">null</span>;</div><div class="line">            callMyFun();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(argObj);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="移动端动态计算rem"><a href="#移动端动态计算rem" class="headerlink" title="移动端动态计算rem"></a>移动端动态计算rem</h2><p>网易考拉海购方案<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">win</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> remCalc = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> docEl = win.document.documentElement,</div><div class="line">        tid;</div><div class="line">    <span class="comment">/*根据设备屏幕计算rem*/</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">refreshRem</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> width = docEl.getBoundingClientRect().width;</div><div class="line">        <span class="comment">/*浏览器打开，已最大模式呈现*/</span></div><div class="line">        <span class="keyword">if</span> (width &gt; <span class="number">640</span>) &#123; width = <span class="number">640</span> &#125;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> rem = width /<span class="number">640</span> * <span class="number">100</span>;</div><div class="line">        docEl.style.fontSize = rem + <span class="string">"px"</span>;</div><div class="line">        remCalc.rem = rem;</div><div class="line">        <span class="comment">/*解决误差*/</span></div><div class="line">        <span class="keyword">var</span> actualSize = <span class="built_in">parseFloat</span>(<span class="built_in">window</span>.getComputedStyle(<span class="built_in">document</span>.documentElement)[<span class="string">"font-size"</span>]);</div><div class="line">        <span class="keyword">if</span> (actualSize !== rem &amp;&amp; actualSize &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">Math</span>.abs(actualSize - rem) &gt; <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">var</span> remScaled = rem * rem / actualSize;</div><div class="line">            docEl.style.fontSize = remScaled + <span class="string">"px"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*节流*/</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dbcRefresh</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        clearTimeout(tid);</div><div class="line">        tid = setTimeout(refreshRem, <span class="number">100</span>)</div><div class="line">    &#125;</div><div class="line">    win.addEventListener(<span class="string">"resize"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; dbcRefresh() &#125;, <span class="literal">false</span>);</div><div class="line">    <span class="comment">/*返回上一页到达该页后激活计算*/</span></div><div class="line">    win.addEventListener(<span class="string">"pageshow"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (e.persisted) &#123; dbcRefresh() &#125;</div><div class="line">    &#125;, <span class="literal">false</span>);</div><div class="line">    refreshRem();</div><div class="line">    remCalc.refreshRem = refreshRem;</div><div class="line">    <span class="comment">/*转换方法，方便工程其他位置临时判断*/</span></div><div class="line">    remCalc.rem2px = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> val = <span class="built_in">parseFloat</span>(d) * <span class="keyword">this</span>.rem;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> d === <span class="string">"string"</span> &amp;&amp; d.match(<span class="regexp">/rem$/</span>)) &#123; val += <span class="string">"px"</span> &#125;</div><div class="line">        <span class="keyword">return</span> val</div><div class="line">    &#125;;</div><div class="line">    remCalc.px2rem = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> val = <span class="built_in">parseFloat</span>(d) / <span class="keyword">this</span>.rem;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> d === <span class="string">"string"</span> &amp;&amp; d.match(<span class="regexp">/px$/</span>)) &#123; val += <span class="string">"rem"</span> &#125;</div><div class="line">        <span class="keyword">return</span> val</div><div class="line">    &#125;;</div><div class="line">    win.remCalc = remCalc</div><div class="line">&#125;)(<span class="built_in">window</span>);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/https-encrypt-shell/" rel="next" title="给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script">
+                <i class="fa fa-chevron-left"></i> 给自己的网站加上https:一个快速获取/更新 Let’s encrypt 证书的 shell script
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/06/javascript实用代码片段/"
+           data-title="javascript实用代码片段记录" data-url="https://lijiliang.github.io/2017/04/06/javascript实用代码片段/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lijiliang" />
+          <p class="site-author-name" itemprop="name">lijiliang</p>
+          <p class="site-description motion-element" itemprop="description">实践，阅读，分享，学习，积累</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lijiliang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素是否位于当前视窗"><span class="nav-number">2.</span> <span class="nav-text">元素是否位于当前视窗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义html"><span class="nav-number">3.</span> <span class="nav-text">转义html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按字节截取字符串"><span class="nav-number">4.</span> <span class="nav-text">按字节截取字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组中指定值的项"><span class="nav-number">5.</span> <span class="nav-text">删除数组中指定值的项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for循环简写"><span class="nav-number">6.</span> <span class="nav-text">for循环简写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成随机字母数字字符串"><span class="nav-number">7.</span> <span class="nav-text">生成随机字母数字字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取图片宽高"><span class="nav-number">8.</span> <span class="nav-text">获取图片宽高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">9.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向模块"><span class="nav-number">10.</span> <span class="nav-text">面向模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">11.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取url中参数构建对象"><span class="nav-number">12.</span> <span class="nav-text">获取url中参数构建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim"><span class="nav-number">13.</span> <span class="nav-text">trim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等待一段时间"><span class="nav-number">14.</span> <span class="nav-text">等待一段时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小数运算"><span class="nav-number">15.</span> <span class="nav-text">小数运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态加载css"><span class="nav-number">16.</span> <span class="nav-text">动态加载css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态加载js"><span class="nav-number">17.</span> <span class="nav-text">动态加载js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端动态计算rem"><span class="nav-number">18.</span> <span class="nav-text">移动端动态计算rem</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lijiliang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lijiliang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
