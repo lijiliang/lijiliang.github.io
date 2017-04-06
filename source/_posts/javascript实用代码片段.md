@@ -401,6 +401,8 @@ function loadJs(loadUrl,callMyFun,argObj){
 ## 移动端动态计算rem
 
 网易考拉海购方案
+
+详情介绍：http://brizer.top/2016/08/20/%E7%A7%BB%E5%8A%A8web%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%E5%8A%A8%E6%80%81%E8%AE%A1%E7%AE%97%E7%89%88/
 ```js
 (function(win) {
     var remCalc = {};
